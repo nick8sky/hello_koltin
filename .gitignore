@@ -1,4 +1,7 @@
 /.idea/
-/.DS_Store
 /.gradle/
-/.settings.gradle
+/build/
+/gradle/
+/.settings/
+/.classpath
+.DS_Store
