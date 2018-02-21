@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  <mapper namespace="org.kx.de.dal.UserMapper">
+    <resultMap id="UserResultMap" type="org.kx.de.User" >
+      <result column="id" property="id" jdbcType="INTEGER" />
+      <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+      <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <!--不展示密码-->
+    <sql id="column_List">
+      id,USERNAME,PASSWORD
+     </sql>
+
+    <insert id="insert"   useGeneratedKeys="true" keyProperty="id" parameterType="org.kx.de.User">
+      insert into USER
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="username != null">USERNAME,</if>
+          <if test="password != null">PASSWORD,</if>
+
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+          <if test="username != null">#{username,jdbcType=VARCHAR},</if>
+          <if test="password != null">#{password,jdbcType=VARCHAR},</if>
+
+        </trim>
+      </insert>
+
+
+     <select id="get" parameterType="org.kx.de.User" resultMap="UserResultMap">
+        select <include refid="column_List" /> from USER  where
+           id = #{id,jdbcType=INTEGER}
+
+     </select>
+
+
+</mapper>
