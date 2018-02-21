@@ -1,1 +1,3 @@
-用Gradle和SpringBoot实现简单的RESTful框架应用
+用Gradle和SpringBoot实现简单的RESTful框架应用;
+
+项目名称写错了，应该是hello_kotlin
